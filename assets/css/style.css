@@ -14,9 +14,15 @@ input, textarea, button, select, a, div {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.fenetre {
+.partie {
     display: flex;
     flex-direction: column;
+    position: relative;
+    left: 0;
+    bottom: 0px;
+}
+
+.fenetre {
     background-color: #252c49;
     color: #ffffff;
     padding: 30px;
@@ -132,7 +138,7 @@ input, textarea, button, select, a, div {
     display: none;
 }
 
-.fenetre button.suivant {
+.fenetre button {
     background-color: #107eea;
     border: none;
     font-family: 'Karla', sans-serif;
@@ -146,6 +152,70 @@ input, textarea, button, select, a, div {
     outline: none;
 }
 
+/* Fenêtre d'affichage du score */
+
+.fenetre.score {
+    background-color: #252c49f1;
+    text-align: center;
+    overflow: hidden;
+}
+
+.fenetre.score h2 {
+    font-size: 2rem;
+}
+
+.fenetre.score img {
+    height: 150px;
+}
+
+.fenetre.score h2 {
+    font-size: 2rem;
+}
+
+.fenetre.score button {
+    border-radius: 5px;
+    margin-top: 0;
+    background-color: #268600;
+}
+
+/* Classes utilitaires */
+
+.gras {
+    font-weight: bold;
+}
+
+.majuscule {
+    text-transform: uppercase;
+}
+
+.txt-moyen {
+    font-size: 1.2rem;
+}
+
+.txt-grand {
+    font-size: 2rem;
+}
+
+.txt-enorme {
+    font-size: 3rem;
+}
+
+.gris {
+    color: #aaa;
+}
+
+.vert {
+    color: rgb(105, 233, 54);
+}
+
+.espace-4 {
+    letter-spacing: 4px;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
 .clic {
     transition: transform 100ms linear;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -155,6 +225,10 @@ input, textarea, button, select, a, div {
     transform: scale(.98);
 }
 
+.cacher {
+    display: none;
+}
+
 /*##################### RESPONSIVE DESIGN ########################*/
 
 /* Extra small devices (phones, 600px and down) */
@@ -162,9 +236,29 @@ input, textarea, button, select, a, div {
 @media only screen and (max-width: 600px) {
     body {
         background-color: #252c49;
+        /*background-image: url(../img/bg-2.jpg);*/
+        background-size: contain;
+        background-position: center;
     }
+
 }
 
+/* Pour les écrans en dessous de 320px de largeur */
+
+@media only screen and (max-width: 320px) {
+
+    .fenetre.score {
+        padding-top: 10px;
+    }
+    
+    .fenetre.score h2 {
+        font-size: 1.5rem;
+    }
+
+    .fenetre.score .txt-enorme{
+        margin-bottom: 20px;
+    }
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 
 @media only screen and (min-width: 600px) {}
@@ -192,7 +286,7 @@ input, textarea, button, select, a, div {
     }
     .fenetre {
         padding: 30px;
-        max-width: 600px;
+        width: 600px;
     }
     .fenetre .progression {
         border-radius: 20px;

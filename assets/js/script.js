@@ -11,6 +11,7 @@ import f from "./fonctions.js";
     const qCompteur = f.s(".question-num .question-compteur");
     const elQuestion = f.s(".question");
     const elsPropositions = f.s(".proposition p");
+    const elScore = f.s(".score p span.vert");
 
     // On crée des variables de travail
     let numQuestionCourante = 0;
@@ -20,6 +21,7 @@ import f from "./fonctions.js";
     let choisi = false;
     let tempsMax = 20;
     let chrono = -1;
+    let score = 0;
 
     // On mélange les questions
     f.melanger(questions);
@@ -60,6 +62,7 @@ import f from "./fonctions.js";
             if (trouve) {
                 choix.classList.remove('choix');
                 choix.classList.add('juste');
+                score++;
             } else {
                 choix.classList.remove('choix');
                 choix.classList.add('incorrecte');
@@ -73,7 +76,10 @@ import f from "./fonctions.js";
 
     function nouvelleQuestion() {
         // Si nous somme à la dernière question on ne fait rien
-        if (numQuestionCourante === nbreMaxQuestions) return;
+        if (numQuestionCourante === nbreMaxQuestions) {
+            afficherScore();
+            return;
+        }
         else numQuestionCourante++;
 
         // On initialise le temps
@@ -138,8 +144,14 @@ import f from "./fonctions.js";
         clearInterval(chrono);
     }
 
-    function activerPropositions() {
-
+    function afficherScore() {
+        f.s("body").css("backgroundImage", "");
+        f.s(".partie").cacher();
+        elScore.valeur(score);
+        f.s(".fenetre.score").afficher();
+        f.s(".score button").clic(() => {
+            location.reload();
+        })
     }
 
 })();

@@ -27,6 +27,14 @@ export default {
                 el.style[prop] = val;
                 return el;
             }
+            el.afficher = () => {
+                el.classList.remove("cacher");
+                return el;
+            }
+            el.cacher = () => {
+                el.classList.add("cacher");
+                return el;
+            }
             return el;
         } else if (els.length > 1) {
             els.clic = (cb) => {
