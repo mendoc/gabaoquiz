@@ -17,6 +17,7 @@ import f from "./fonctions.js";
     const nbreMaxQuestions = 9;
     let questionCourante = {};
     let tempsRestant = 20;
+    let choisi = false;
     let tempsMax = 20;
     let chrono = -1;
 
@@ -29,9 +30,17 @@ import f from "./fonctions.js";
     // Lorsqu'on clique sur une proposition
     f.s(".proposition").clic((e, proposition) => {
         f.s(".proposition").forEach(p => {
-            p.classList.remove("choix");
+            if (choisi) {
+                p.classList.remove("clic");
+            } else {
+                p.classList.remove("choix");
+                p.classList.remove("juste");
+                p.classList.remove("incorrecte");
+                p.classList.add("clic");
+            }
+
         });
-        proposition.classList.add("choix");
+        if (!choisi) proposition.classList.add("choix");
     })
 
     // Lorsqu'on clique sur le bouton suivant
@@ -42,11 +51,22 @@ import f from "./fonctions.js";
             // On bloque le chrono
             arreterChrono();
 
+            // On marque qu'il a choisi
+            choisi = true;
+
             // On vérifie si la réponse choisie est correcte ou pas
             let trouve = f.verifierReponse(questionCourante.propositions, choix.dataset.pos);
 
+            if (trouve) {
+                choix.classList.remove('choix');
+                choix.classList.add('juste');
+            } else {
+                choix.classList.remove('choix');
+                choix.classList.add('incorrecte');
+            }
+
             // Une demi seconde plus tard on affiche la question suivante
-            nouvelleQuestion();
+            setTimeout(nouvelleQuestion, 500);
 
         }
     });
@@ -59,9 +79,16 @@ import f from "./fonctions.js";
         // On initialise le temps
         tempsRestant = 20;
 
+        // On marque que le joueur n'a pas encore choisi
+        choisi = false;
+
         // On déselectionne le précédent choix
-        let ancienChoix = document.querySelector(".choix");
-        if (ancienChoix) ancienChoix.classList.remove('choix');
+        let ancienChoix = document.querySelector(".proposition.choix, .proposition.juste, .proposition.incorrecte");
+        if (ancienChoix) {
+            ancienChoix.classList.remove('choix');
+            ancienChoix.classList.remove('juste');
+            ancienChoix.classList.remove('incorrecte');
+        }
 
         // On récupère une question
         questionCourante = questions[numQuestionCourante - 1];
@@ -109,6 +136,10 @@ import f from "./fonctions.js";
 
     function arreterChrono() {
         clearInterval(chrono);
+    }
+
+    function activerPropositions() {
+
     }
 
 })();

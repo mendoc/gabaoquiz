@@ -10,7 +10,7 @@ body {
     user-select: none;
 }
 
-input, textarea, button, select, a {
+input, textarea, button, select, a, div {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -87,6 +87,34 @@ input, textarea, button, select, a {
     border: 2px #107eea solid;
 }
 
+.fenetre .propositions .proposition.juste {
+    border: 2px #29ea10 solid;
+}
+
+.fenetre .propositions .proposition.incorrecte {
+    border: 2px #ea1e10 solid;
+}
+
+.fenetre .propositions .proposition.choix span, .fenetre .propositions .proposition.juste span, .fenetre .propositions .proposition.icorrecte span {
+    border: none;
+    padding: 0;
+    margin-right: 8px;
+}
+
+.fenetre .propositions .proposition.choix span svg {
+    display: block;
+    padding: 4px;
+    border-radius: 100%;
+    background: #107eea;
+}
+
+.fenetre .propositions .proposition.juste span svg {
+    display: block;
+    padding: 4px;
+    border-radius: 100%;
+    background: #29ea10;
+}
+
 .fenetre .propositions .proposition p {
     margin: 0;
     letter-spacing: .05rem;
@@ -102,19 +130,6 @@ input, textarea, button, select, a {
 
 .fenetre .propositions .proposition span svg {
     display: none;
-}
-
-.fenetre .propositions .proposition.choix span {
-    border: none;
-    padding: 0;
-    margin-right: 8px;
-}
-
-.fenetre .propositions .proposition.choix span svg {
-    display: block;
-    padding: 4px;
-    border-radius: 100%;
-    background: #107eea;
 }
 
 .fenetre button.suivant {
